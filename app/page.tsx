@@ -1,6 +1,8 @@
 import Image from "next/image";
 import FloatingIcons from "./components/FloatingIcons";
 import FeatureMockups from "./components/FeatureMockups";
+import QRCodeSection from "./components/QRCodeSection";
+import ProblemIcons from "./components/ProblemIcons";
 
 export default function Home() {
   return (
@@ -40,7 +42,7 @@ export default function Home() {
             </a>
             <a
               href="#pricing"
-              className="hidden text-sm font-medium text-[#4A4A4A] transition-colors hover:text-[#1A1A1A] md:block"
+              className="hidden"
             >
               Pricing
             </a>
@@ -72,8 +74,8 @@ export default function Home() {
               </span>
             </h1>
             <p className="mx-auto mb-8 max-w-2xl text-base leading-relaxed text-[#4A4A4A] md:mb-10 md:text-lg lg:text-xl">
-              Automate document collection and structure case data in minutes —
-              not hours.
+              Stop chasing documents. Automatically collect and structure
+              immigration case data in minutes — not hours.
             </p>
             <div className="flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
               <a
@@ -142,6 +144,59 @@ export default function Home() {
           </div>
         </main>
 
+        {/* Problems / Pain points - sell by showing what we fix */}
+        <section className="relative z-10 overflow-hidden border-t border-[#E5E5E5] py-16 md:py-24">
+          {/* Subtle background */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#FAFAFA] via-white to-[#FAFAFA]" />
+          <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-[#00A56E]/5 blur-[80px]" />
+          <div className="absolute -left-20 bottom-0 h-48 w-48 rounded-full bg-[#00A56E]/5 blur-[60px]" />
+          <div className="relative mx-auto max-w-5xl px-4 md:px-12">
+            <div className="mb-12 text-center md:mb-16">
+              <h2 className="mb-3 text-2xl font-bold text-[#1A1A1A] md:text-3xl lg:text-4xl">
+                Sound familiar?
+              </h2>
+              <p className="mx-auto max-w-xl text-[#4A4A4A] md:text-lg">
+                These are the daily pains that slow you down.
+              </p>
+            </div>
+            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {[
+                { problem: "Chasing documents", why: "Daily, repetitive, exhausting", icon: ProblemIcons.chasing },
+                { problem: "Manual data entry", why: "Time-consuming + risky", icon: ProblemIcons.manualEntry },
+                { problem: "Overloaded caseload", why: "Constant pressure", icon: ProblemIcons.overloaded },
+                { problem: "Client emotional stress", why: "Drains energy", icon: ProblemIcons.stress },
+                { problem: "Policy changes", why: "Adds complexity", icon: ProblemIcons.policy },
+                { problem: "Disorganized files", why: "Slows everything", icon: ProblemIcons.disorganized },
+              ].map(({ problem, why, icon }) => (
+                <div
+                  key={problem}
+                  className="group flex items-start gap-4 rounded-2xl border border-[#E5E5E5] bg-white p-5 shadow-sm transition-all hover:border-[#00A56E]/30 hover:shadow-lg hover:shadow-[#00A56E]/5 md:p-6"
+                >
+                  <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-[#00A56E]/10 text-[#00A56E] transition-colors group-hover:bg-[#00A56E]/15">
+                    {icon}
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <h3 className="font-semibold text-[#1A1A1A] md:text-base">{problem}</h3>
+                    <p className="mt-1 text-sm leading-relaxed text-[#4A4A4A]">{why}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="mt-14 flex flex-col items-center gap-4 rounded-2xl border border-[#00A56E]/20 bg-gradient-to-r from-[#00A56E]/5 to-[#00A56E]/10 px-6 py-8 text-center md:mt-16 md:flex-row md:justify-between md:px-10">
+              <p className="text-lg font-medium text-[#1A1A1A] md:text-xl">
+                Installo helps you fix these.
+              </p>
+              <a
+                href="https://app.tryinstallo.com/"
+                className="inline-flex shrink-0 items-center gap-2 rounded-full bg-[#00A56E] px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-[#009660] hover:shadow-lg hover:shadow-[#00A56E]/25 active:scale-[0.98]"
+              >
+                See how
+                <span>→</span>
+              </a>
+            </div>
+          </div>
+        </section>
+
         {/* Features strip */}
         <section
           id="features"
@@ -156,37 +211,37 @@ export default function Home() {
                 {
                   key: "upload",
                   title: "Upload Everything at Once",
-                  desc: "Drop full case folders. We handle the structure.",
+                  desc: "Drop full case folders. We organize them for you.",
                   mockup: FeatureMockups.upload,
                 },
                 {
                   key: "extract",
                   title: "Extract Key Case Data",
-                  desc: "Names, dates, identifiers — automatically structured.",
+                  desc: "Names, dates, IDs — we get them automatically.",
                   mockup: FeatureMockups.extract,
                 },
                 {
                   key: "review",
                   title: "Review Side-by-Side",
-                  desc: "Validate documents and extracted fields in one screen.",
+                  desc: "Check documents and data in one screen.",
                   mockup: FeatureMockups.review,
                 },
                 {
                   key: "consolidate",
                   title: "Consolidate Case Information",
-                  desc: "No more jumping between files.",
+                  desc: "All case info in one place.",
                   mockup: FeatureMockups.consolidate,
                 },
                 {
                   key: "detect",
                   title: "Detect Data Issues Early",
-                  desc: "Spot conflicts and missing information instantly.",
+                  desc: "Find problems and missing info fast.",
                   mockup: FeatureMockups.detect,
                 },
                 {
                   key: "track",
                   title: "Track Case Readiness",
-                  desc: "See what's complete and what still needs attention.",
+                  desc: "See what's done and what's left.",
                   mockup: FeatureMockups.track,
                 },
               ].map((feature) => (
@@ -234,6 +289,9 @@ export default function Home() {
             </p>
           </div>
         </section>
+
+        {/* QR Code - Scan to visit */}
+        <QRCodeSection />
 
         {/* Footer */}
         <footer className="relative z-10 border-t border-[#E5E5E5] bg-white py-6 md:py-8">

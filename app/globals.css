@@ -54,3 +54,26 @@ body {
     transform: translate(5px, 2px) rotate(0.5deg);
   }
 }
+
+/* Playful pain cards - Google doodle / anti-gravity style */
+.pain-card {
+  animation: pain-card-float 6s ease-in-out infinite;
+}
+.pain-card:nth-child(1) { animation-delay: 0s; }
+.pain-card:nth-child(2) { animation-delay: 0.5s; }
+.pain-card:nth-child(3) { animation-delay: 1s; }
+.pain-card:nth-child(4) { animation-delay: 0.2s; }
+.pain-card:nth-child(5) { animation-delay: 0.7s; }
+.pain-card:nth-child(6) { animation-delay: 0.3s; }
+@media (prefers-reduced-motion: reduce) {
+  .pain-card {
+    animation: none;
+  }
+}
+@keyframes pain-card-float {
+  0%, 100% { transform: translateY(0) rotate(-0.5deg); }
+  50% { transform: translateY(-6px) rotate(0.5deg); }
+}
+.pain-card:hover {
+  animation: none;
+}

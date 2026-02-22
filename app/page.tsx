@@ -3,6 +3,15 @@ import Image from "next/image";
 import FeatureMockups from "./components/FeatureMockups";
 import ProblemIcons from "./components/ProblemIcons";
 
+const PAIN_POINT_IMAGES = [
+  { src: "/pain-chasing-documents.png", alt: "Chasing documents — daily, repetitive, exhausting" },
+  { src: "/pain-manual-data-entry.png", alt: "Manual data entry — time-consuming and risky" },
+  { src: "/pain-overloaded-caseload.png", alt: "Overloaded caseload — constant pressure" },
+  { src: "/pain-client-stress.png", alt: "Client emotional stress — drains energy" },
+  { src: "/pain-policy-changes.png", alt: "Policy changes — adds complexity" },
+  { src: "/pain-disorganized-files.png", alt: "Disorganized files — slows everything" },
+];
+
 const FloatingIcons = dynamic(() => import("./components/FloatingIcons"), {
   loading: () => null,
 });
@@ -158,22 +167,32 @@ export default function Home() {
           </div>
         </main>
 
-        {/* Problems / Pain points - sell by showing what we fix */}
-        <section className="relative z-10 overflow-hidden border-t border-[#E5E5E5] py-16 md:py-24">
-          {/* Subtle background */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#FAFAFA] via-white to-[#FAFAFA]" />
-          <div className="absolute -right-20 -top-20 h-40 w-40 rounded-full bg-[#00A56E]/5 blur-[40px] md:h-64 md:w-64 md:blur-[80px]" />
-          <div className="absolute -left-20 bottom-0 h-32 w-32 rounded-full bg-[#00A56E]/5 blur-[30px] md:h-48 md:w-48 md:blur-[60px]" />
+        {/* Problems / Pain points - playful Google doodle style */}
+        <section className="relative z-10 overflow-hidden border-t border-[#E8E8E8] py-20 md:py-28">
+          {/* Playful floating orbs */}
+          <div className="pointer-events-none absolute inset-0">
+            <div className="absolute left-[10%] top-[15%] h-24 w-24 rounded-full bg-[#00A56E]/10 blur-2xl" />
+            <div className="absolute right-[15%] top-[40%] h-32 w-32 rounded-full bg-[#00D4AA]/15 blur-3xl" />
+            <div className="absolute left-[30%] bottom-[20%] h-20 w-20 rounded-full bg-[#00A56E]/8 blur-xl" />
+            <div className="absolute right-[25%] bottom-[30%] h-16 w-16 rounded-full bg-[#7DD3C0]/20 blur-2xl" />
+          </div>
+          {/* Floating doodle shapes */}
+          <div className="pointer-events-none absolute inset-0 overflow-hidden">
+            <div className="absolute left-[5%] top-[20%] h-3 w-3 rounded-full bg-[#00A56E]/20 animate-pulse" style={{ animationDelay: "0s" }} />
+            <div className="absolute right-[8%] top-[25%] h-2 w-2 rounded-full bg-[#00A56E]/25 animate-pulse" style={{ animationDelay: "1s" }} />
+            <div className="absolute left-[20%] bottom-[15%] h-2.5 w-2.5 rounded-full bg-[#00D4AA]/20 animate-pulse" style={{ animationDelay: "0.5s" }} />
+            <div className="absolute right-[12%] bottom-[25%] h-2 w-2 rounded-full bg-[#00A56E]/15 animate-pulse" style={{ animationDelay: "1.5s" }} />
+          </div>
           <div className="relative mx-auto max-w-5xl px-4 md:px-12">
-            <div className="mb-12 text-center md:mb-16">
-              <h2 className="mb-3 text-2xl font-bold text-[#1A1A1A] md:text-3xl lg:text-4xl">
+            <div className="mb-14 text-center md:mb-16">
+              <h2 className="mb-3 text-2xl font-bold tracking-tight text-[#1A1A1A] md:text-3xl lg:text-4xl">
                 Sound familiar?
               </h2>
-              <p className="mx-auto max-w-xl text-[#4A4A4A] md:text-lg">
-                These are the daily pains that slow you down.
+              <p className="mx-auto max-w-xl text-[#5A5A5A] md:text-lg">
+                We get it. Here&apos;s what we&apos;re fixing.
               </p>
             </div>
-            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {[
                 { problem: "Chasing documents", why: "Daily, repetitive, exhausting", icon: ProblemIcons.chasing },
                 { problem: "Manual data entry", why: "Time-consuming + risky", icon: ProblemIcons.manualEntry },
@@ -181,31 +200,49 @@ export default function Home() {
                 { problem: "Client emotional stress", why: "Drains energy", icon: ProblemIcons.stress },
                 { problem: "Policy changes", why: "Adds complexity", icon: ProblemIcons.policy },
                 { problem: "Disorganized files", why: "Slows everything", icon: ProblemIcons.disorganized },
-              ].map(({ problem, why, icon }) => (
-                <div
+              ].map(({ problem, why, icon }, i) => (
+                <article
                   key={problem}
-                  className="group flex items-start gap-4 rounded-2xl border border-[#E5E5E5] bg-white p-5 shadow-sm transition-all hover:border-[#00A56E]/30 hover:shadow-lg hover:shadow-[#00A56E]/5 md:p-6"
+                  className="pain-card group relative flex flex-col overflow-hidden rounded-3xl bg-white/90 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.08)] backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 hover:rotate-0 hover:scale-[1.02] hover:shadow-[0_20px_50px_-15px_rgba(0,165,110,0.25)] hover:bg-white"
                 >
-                  <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-[#00A56E]/10 text-[#00A56E] transition-colors group-hover:bg-[#00A56E]/15">
-                    {icon}
+                  <div className="relative aspect-[4/3] overflow-hidden rounded-t-3xl">
+                    <Image
+                      src={PAIN_POINT_IMAGES[i].src}
+                      alt={PAIN_POINT_IMAGES[i].alt}
+                      fill
+                      className="object-cover transition-transform duration-500 ease-out group-hover:scale-110"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                    <div className="absolute left-4 top-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-white/95 text-[#00A56E] shadow-lg backdrop-blur-md transition-all duration-300 group-hover:scale-110 group-hover:rotate-6">
+                      {icon}
+                    </div>
                   </div>
-                  <div className="min-w-0 flex-1">
-                    <h3 className="font-semibold text-[#1A1A1A] md:text-base">{problem}</h3>
-                    <p className="mt-1 text-sm leading-relaxed text-[#4A4A4A]">{why}</p>
+                  <div className="relative flex flex-col gap-2 p-5 md:p-6">
+                    <h3 className="text-base font-semibold tracking-tight text-[#1A1A1A] md:text-lg">
+                      {problem}
+                    </h3>
+                    <p className="text-sm leading-relaxed text-[#6B6B6B]">
+                      {why}
+                    </p>
+                    <div className="mt-2 flex items-center gap-2 text-[#00A56E] opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-1">
+                      <span className="text-xs font-medium">We fix this</span>
+                      <span className="text-sm">→</span>
+                    </div>
                   </div>
-                </div>
+                </article>
               ))}
             </div>
-            <div className="mt-14 flex flex-col items-center gap-4 rounded-2xl border border-[#00A56E]/20 bg-gradient-to-r from-[#00A56E]/5 to-[#00A56E]/10 px-6 py-8 text-center md:mt-16 md:flex-row md:justify-between md:px-10">
+            <div className="mt-14 flex flex-col items-center gap-4 rounded-3xl bg-gradient-to-br from-[#00A56E]/10 via-[#00D4AA]/5 to-transparent px-6 py-8 text-center md:mt-16 md:flex-row md:justify-between md:px-10">
               <p className="text-lg font-medium text-[#1A1A1A] md:text-xl">
                 Installo helps you fix these.
               </p>
               <a
                 href="https://app.tryinstallo.com/"
-                className="inline-flex shrink-0 items-center gap-2 rounded-full bg-[#00A56E] px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-[#009660] hover:shadow-lg hover:shadow-[#00A56E]/25 active:scale-[0.98]"
+                className="group inline-flex shrink-0 items-center gap-2 rounded-full bg-[#00A56E] px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-[#00A56E]/25 transition-all hover:-translate-y-0.5 hover:scale-105 hover:bg-[#009660] hover:shadow-xl hover:shadow-[#00A56E]/30 active:scale-[0.98]"
               >
                 See how
-                <span>→</span>
+                <span className="inline-block transition-transform group-hover:translate-x-1">→</span>
               </a>
             </div>
           </div>

@@ -1,17 +1,30 @@
+import dynamic from "next/dynamic";
 import Image from "next/image";
-import FloatingIcons from "./components/FloatingIcons";
 import FeatureMockups from "./components/FeatureMockups";
-import QRCodeSection from "./components/QRCodeSection";
 import ProblemIcons from "./components/ProblemIcons";
+
+const FloatingIcons = dynamic(() => import("./components/FloatingIcons"), {
+  loading: () => null,
+});
+
+const QRCodeSection = dynamic(() => import("./components/QRCodeSection"), {
+  loading: () => (
+    <section className="relative z-10 border-t border-[#E5E5E5] bg-white py-16 md:py-24">
+      <div className="mx-auto max-w-3xl px-4 text-center md:px-12">
+        <div className="h-[280px] animate-pulse rounded-2xl bg-[#F5F5F5]" />
+      </div>
+    </section>
+  ),
+});
 
 export default function Home() {
   return (
     <div className="relative min-h-screen overflow-x-hidden overflow-y-auto bg-white pb-safe">
-      {/* Ambient gradient orbs - subtle teal tint */}
+      {/* Ambient gradient orbs - subtle teal tint (reduced blur on mobile for perf) */}
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute -left-40 -top-40 h-96 w-96 rounded-full bg-[#00A56E]/5 blur-[120px]" />
-        <div className="absolute -right-40 top-1/3 h-80 w-80 rounded-full bg-[#00A56E]/5 blur-[100px]" />
-        <div className="absolute bottom-0 left-1/2 h-64 w-96 -translate-x-1/2 rounded-full bg-[#00A56E]/5 blur-[80px]" />
+        <div className="absolute -left-40 -top-40 h-64 w-64 rounded-full bg-[#00A56E]/5 blur-[60px] md:h-96 md:w-96 md:blur-[120px]" />
+        <div className="absolute -right-40 top-1/3 h-48 w-48 rounded-full bg-[#00A56E]/5 blur-[50px] md:h-80 md:w-80 md:blur-[100px]" />
+        <div className="absolute bottom-0 left-1/2 h-40 w-64 -translate-x-1/2 rounded-full bg-[#00A56E]/5 blur-[40px] md:h-64 md:w-96 md:blur-[80px]" />
       </div>
 
       {/* Floating icons layer - antigravity effect */}
@@ -28,6 +41,7 @@ export default function Home() {
               width={28}
               height={28}
               className="h-7 w-7 md:h-8 md:w-8"
+              priority
             />
             <span className="text-lg font-semibold tracking-tight text-[#1A1A1A] md:text-xl">
               Installo
@@ -101,7 +115,7 @@ export default function Home() {
 
           {/* Product visual - dashboard mock */}
           <div className="relative mx-auto mt-10 w-full max-w-5xl px-2 md:mt-24 md:px-4">
-            <div className="absolute -inset-2 rounded-2xl bg-[#00A56E]/5 blur-2xl md:-inset-4" />
+            <div className="absolute -inset-2 rounded-2xl bg-[#00A56E]/5 blur-xl md:-inset-4 md:blur-2xl" />
             <div className="relative overflow-hidden rounded-lg border border-[#E5E5E5] bg-white shadow-xl shadow-black/5 md:rounded-xl">
               {/* Browser chrome */}
               <div className="flex items-center gap-2 border-b border-[#E5E5E5] bg-[#FAFAFA] px-3 py-2 md:px-4 md:py-3">
@@ -148,8 +162,8 @@ export default function Home() {
         <section className="relative z-10 overflow-hidden border-t border-[#E5E5E5] py-16 md:py-24">
           {/* Subtle background */}
           <div className="absolute inset-0 bg-gradient-to-b from-[#FAFAFA] via-white to-[#FAFAFA]" />
-          <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-[#00A56E]/5 blur-[80px]" />
-          <div className="absolute -left-20 bottom-0 h-48 w-48 rounded-full bg-[#00A56E]/5 blur-[60px]" />
+          <div className="absolute -right-20 -top-20 h-40 w-40 rounded-full bg-[#00A56E]/5 blur-[40px] md:h-64 md:w-64 md:blur-[80px]" />
+          <div className="absolute -left-20 bottom-0 h-32 w-32 rounded-full bg-[#00A56E]/5 blur-[30px] md:h-48 md:w-48 md:blur-[60px]" />
           <div className="relative mx-auto max-w-5xl px-4 md:px-12">
             <div className="mb-12 text-center md:mb-16">
               <h2 className="mb-3 text-2xl font-bold text-[#1A1A1A] md:text-3xl lg:text-4xl">

@@ -30,9 +30,14 @@ body {
   padding-bottom: env(safe-area-inset-bottom, 0);
 }
 
-/* Antigravity-style floating animation */
+/* Antigravity-style floating animation - disabled when user prefers reduced motion */
 .floating-icon {
   animation: float 8s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .floating-icon {
+    animation: none;
+  }
 }
 @keyframes float {
   0%,

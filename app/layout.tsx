@@ -18,10 +18,59 @@ const geistMono = Geist_Mono({
   preload: false,
 });
 
+const SITE_URL = "https://tryinstallo.com";
+
 export const metadata: Metadata = {
-  title: "Installo | Case Intake, Rebuilt.",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "Installo | Case Intake, Rebuilt.",
+    template: "%s | Installo",
+  },
   description:
-    "Automate client intake, document collection, and conflict checks. Stop chasing paperwork and focus on what matters.",
+    "Stop chasing documents. Automatically collect and structure immigration case data in minutes — not hours. Modern tools for paralegals and legal teams.",
+  keywords: [
+    "immigration case intake",
+    "document collection",
+    "case management",
+    "paralegal software",
+    "legal intake",
+    "document automation",
+    "immigration law",
+    "case data extraction",
+  ],
+  authors: [{ name: "Installo", url: SITE_URL }],
+  creator: "Installo",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: SITE_URL,
+    siteName: "Installo",
+    title: "Installo | Case Intake, Rebuilt.",
+    description:
+      "Stop chasing documents. Automatically collect and structure immigration case data in minutes — not hours.",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1536,
+        height: 1024,
+        alt: "Installo - Case Intake, Rebuilt.",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Installo | Case Intake, Rebuilt.",
+    description:
+      "Stop chasing documents. Automatically collect and structure immigration case data in minutes.",
+    images: ["/og-image.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  alternates: {
+    canonical: SITE_URL,
+  },
 };
 
 export const viewport: Viewport = {
@@ -29,6 +78,45 @@ export const viewport: Viewport = {
   initialScale: 1,
   viewportFit: "cover",
   themeColor: "#00A56E",
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://tryinstallo.com/#organization",
+      name: "Installo",
+      url: "https://tryinstallo.com",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://tryinstallo.com/installo-logo.svg",
+      },
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://tryinstallo.com/#website",
+      url: "https://tryinstallo.com",
+      name: "Installo",
+      description:
+        "Stop chasing documents. Automatically collect and structure immigration case data in minutes — not hours.",
+      publisher: { "@id": "https://tryinstallo.com/#organization" },
+    },
+    {
+      "@type": "SoftwareApplication",
+      name: "Installo",
+      applicationCategory: "BusinessApplication",
+      operatingSystem: "Web",
+      description:
+        "Case intake software for paralegals. Upload documents, extract data, review side-by-side, and consolidate case information.",
+      url: "https://app.tryinstallo.com",
+      offers: {
+        "@type": "Offer",
+        price: "0",
+        priceCurrency: "USD",
+      },
+    },
+  ],
 };
 
 export default function RootLayout({
@@ -41,6 +129,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <GoogleAnalytics />
         <Analytics />
         {children}

@@ -1,7 +1,9 @@
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import FeatureMockups from "./components/FeatureMockups";
+import HeroVideo from "./components/HeroVideo";
 import ProblemIcons from "./components/ProblemIcons";
+import SupademoButton from "./components/SupademoButton";
 
 const PAIN_POINT_IMAGES = [
   { src: "/pain-chasing-documents.png", alt: "Chasing documents — daily, repetitive, exhausting" },
@@ -110,61 +112,15 @@ export default function Home() {
                   →
                 </span>
               </a>
-              <a
-                href="#"
-                className="flex w-full min-h-[48px] items-center justify-center gap-2 rounded-full border border-[#E5E5E5] bg-white px-8 py-4 text-base font-semibold text-[#1A1A1A] transition-all hover:bg-[#F5F5F5] active:scale-[0.98] sm:w-auto"
-              >
-                View Demo
-              </a>
+              <SupademoButton />
             </div>
             <p className="mt-3 text-xs text-[#ADADAD] md:mt-4 md:text-sm">
               No credit card required · 2-min setup
             </p>
           </div>
 
-          {/* Product visual - dashboard mock */}
-          <div className="relative mx-auto mt-10 w-full max-w-5xl px-2 md:mt-24 md:px-4">
-            <div className="absolute -inset-2 rounded-2xl bg-[#00A56E]/5 blur-xl md:-inset-4 md:blur-2xl" />
-            <div className="relative overflow-hidden rounded-lg border border-[#E5E5E5] bg-white shadow-xl shadow-black/5 md:rounded-xl">
-              {/* Browser chrome */}
-              <div className="flex items-center gap-2 border-b border-[#E5E5E5] bg-[#FAFAFA] px-3 py-2 md:px-4 md:py-3">
-                <div className="flex gap-1.5 md:gap-2">
-                  <div className="h-2.5 w-2.5 rounded-full bg-[#E5E5E5] md:h-3 md:w-3" />
-                  <div className="h-2.5 w-2.5 rounded-full bg-[#E5E5E5] md:h-3 md:w-3" />
-                  <div className="h-2.5 w-2.5 rounded-full bg-[#E5E5E5] md:h-3 md:w-3" />
-                </div>
-                <div className="mx-auto flex flex-1 min-w-0 items-center justify-center rounded-lg bg-white border border-[#E5E5E5] px-2 py-1.5 md:max-w-md md:px-4 md:py-2">
-                  <span className="truncate text-[10px] text-[#ADADAD] md:text-xs">app.tryinstallo.com/case/12345</span>
-                </div>
-              </div>
-              {/* Dashboard mock content - mobile: simplified single column */}
-              <div className="flex min-h-[220px] md:min-h-[400px]">
-                <div className="hidden w-1/4 border-r border-[#E5E5E5] bg-[#FAFAFA] p-4 md:block">
-                  <div className="mb-4 h-8 w-24 rounded bg-[#E5E5E5]" />
-                  <div className="space-y-2">
-                    {[1, 2, 3, 4, 5].map((i) => (
-                      <div key={i} className="h-6 rounded bg-[#E5E5E5]/60" />
-                    ))}
-                  </div>
-                </div>
-                <div className="flex-1 p-3 md:p-6">
-                  <div className="mb-3 flex gap-2 md:mb-4 md:gap-4">
-                    <div className="h-8 flex-1 rounded-lg bg-[#E5E5E5]/60 md:h-10" />
-                    <div className="h-8 w-16 rounded-lg bg-[#00A56E]/20 md:h-10 md:w-24" />
-                  </div>
-                  <div className="grid grid-cols-2 gap-2 md:grid-cols-3 md:gap-4">
-                    {[1, 2, 3, 4, 5, 6].map((i) => (
-                      <div key={i} className="h-16 rounded-lg border border-[#E5E5E5] bg-[#FAFAFA] md:h-24" />
-                    ))}
-                  </div>
-                  <div className="mt-3 flex flex-col gap-2 md:mt-6 md:flex-row md:gap-4">
-                    <div className="h-28 flex-1 rounded-lg border border-[#E5E5E5] bg-[#FAFAFA] md:h-48" />
-                    <div className="h-28 w-full rounded-lg border border-[#E5E5E5] bg-[#FAFAFA] md:h-48 md:w-80" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          {/* Product visual - full video */}
+          <HeroVideo />
         </main>
 
         {/* Problems / Pain points - playful Google doodle style */}
